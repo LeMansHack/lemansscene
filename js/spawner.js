@@ -8,10 +8,10 @@ var Spawner = function(){
       this.spawnSquare();
     }
     // Updates all the spawned in objects
-    var objectslength = objects.length;
+    var objectslength = this.objects.length;
     if(objectslength > 0){
       for (var i = objectslength-1; i >= 0; i--) {
-        objects[i].update(dt);
+        this.objects[i].update(dt);
       }
     }
   };
