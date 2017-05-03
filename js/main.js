@@ -6,12 +6,28 @@ var now, dt,
 var scene;              // The Three.js Scene
 var camera;             // The Three.js Camera
 var renderer;           // The Three.js Renderer
+var spawner;            // The scene spawner. It spawns stuff
 
 var Planet = function(){ // The Planet - Gets a three.js object on init
-  threejsObj = {};
+  this.threejsObj = {};
+  this.radius = 5.5;
 };
 var planet = new Planet(); // Instantiates the planet Object globally
-
+var colors = {
+  'lights': {
+    'sun': 0xffbbbb,
+    'ambient': 0xb64926,
+  },
+  'materials': {
+    'ground': 0xfff0a5,
+    'grass': 0x468966,
+  },
+  'speculars':{
+    'ground': 0xffffff,
+    'grass': 0xfff0a5,
+  }
+};
+console.log(planet);
 
 
 // When stuff is ready - Start the Scene!
@@ -22,6 +38,8 @@ function visualsIni(){
   console.log('sceneIni() : DOM Loaded');
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera.position.y = 5;
+  camera.position.z = 5;
   renderer = new THREE.WebGLRenderer();
 
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -32,9 +50,9 @@ function visualsIni(){
 
   planet.threejsObj = newplanetObj();
   scene.add( planet.threejsObj );
-  console.log(getObjVertices(planet.threejsObj));
   messUpObjVertices(planet.threejsObj);
-  console.log(getObjVertices(planet.threejsObj));
+
+  spawner = new Spawner();
 
   window.requestAnimationFrame(nextframe);
 }
@@ -62,6 +80,7 @@ function update(dt){
   var fps = dtToFps(dt);
   document.getElementById('fps').innerHTML = '<span>'+fps+'</span>';
   updatePlanet(dt); // Updates the planet (eg.rotation)
+  spawner.update(dt);
 }
 
 // The loops MAIN render function. All other render functions should be run here.
@@ -70,10 +89,11 @@ function render(dt) {
 }
 // Creates the planet object
 function newplanetObj(){
-  var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-  var material = new THREE.MeshPhongMaterial( { color: 0x33BB33, specular: 0xffffff, shininess: 20, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
+  var geometry = new THREE.SphereGeometry( planet.radius, 32, 32 );
+  var material = new THREE.MeshPhongMaterial( { color: colors.materials.grass, specular: colors.speculars.grass, shininess: 20, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
+  console.log(colors);
   planetObj = new THREE.Mesh( geometry, material );
-  planetObj.position.set(0,-4,0);
+  planetObj.position.set(0,0,0);
   return planetObj;
 }
 // Update function for the planet
@@ -84,9 +104,9 @@ function updatePlanet(dt){
 // Sets the ligts for the scene - Needs a lot of work..
 function setLight(){
   console.log('Add Light');
-  var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+  var light = new THREE.AmbientLight( colors.lights.ambient ); // soft white light
   scene.add( light );
-  var sunlight = new THREE.PointLight( 0xff0000, 1, 10000 ); // Sun light.
+  var sunlight = new THREE.PointLight( colors.lights.sun, 1, 10000 ); // Sun light.
   sunlight.position.set( 0, 100, -10 );
   scene.add( sunlight );
 }
@@ -113,7 +133,7 @@ function messUpObjVertices(obj){
 }
 // Up- or down scales a vector three and returns it
 function scaleVector3(v, scale){
-  console.log('About to scale vector by scale: '+scale);
+  // console.log('About to scale vector by scale: '+scale);
   v.x = v.x*scale;
   v.y = v.y*scale;
   v.z = v.z*scale;
