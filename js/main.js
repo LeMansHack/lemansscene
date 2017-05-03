@@ -8,24 +8,20 @@ var camera;             // The Three.js Camera
 var renderer;           // The Three.js Renderer
 var spawner;            // The scene spawner. It spawns stuff
 
-var Planet = function(){ // The Planet - Gets a three.js object on init
-  this.threejsObj = {};
-  this.radius = 5.5;
+// The Planet - Gets a three.js object on init
+var planet = {
+  'threejsObj' : {},
+  'radius' : 5.5,
 };
-var planet = new Planet(); // Instantiates the planet Object globally
-var colors = {
-  'lights': {
-    'sun': 0xffbbbb,
-    'ambient': 0xb64926,
+var skybox = {
+  'radius': 70,
+};
+var sun = {
+  'position': {
+    'x': -40,
+    'y': 100,
+    'z': -50,
   },
-  'materials': {
-    'ground': 0xfff0a5,
-    'grass': 0x468966,
-  },
-  'speculars':{
-    'ground': 0xffffff,
-    'grass': 0xfff0a5,
-  }
 };
 console.log(planet);
 
@@ -47,6 +43,9 @@ function visualsIni(){
   camera.position.z = 5;
 
   setLight();
+
+  skybox.threejsObj = setSkybox();
+  scene.add( skybox.threejsObj );
 
   planet.threejsObj = newplanetObj();
   scene.add( planet.threejsObj );
@@ -90,15 +89,24 @@ function render(dt) {
 // Creates the planet object
 function newplanetObj(){
   var geometry = new THREE.SphereGeometry( planet.radius, 32, 32 );
-  var material = new THREE.MeshPhongMaterial( { color: colors.materials.grass, specular: colors.speculars.grass, shininess: 20, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
+  var material = new THREE.MeshPhongMaterial( { color: colors.materials.grass, specular: colors.speculars.grass, shininess: 5, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
   console.log(colors);
   planetObj = new THREE.Mesh( geometry, material );
   planetObj.position.set(0,0,0);
+  planetObj.rotation.z += 1;
   return planetObj;
+}
+function setSkybox(){
+  var geometry = new THREE.SphereGeometry( skybox.radius, 32, 32 );
+  var material = new THREE.MeshPhongMaterial( { color: colors.materials.sky, specular: colors.speculars.sky, shininess: 20, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading, side: THREE.BackSide } );
+  skyboxObj = new THREE.Mesh( geometry, material );
+  skyboxObj.position.set(0,0,0);
+  return skyboxObj;
 }
 // Update function for the planet
 function updatePlanet(dt){
-  planet.threejsObj.rotation.z += 0.004;
+  // planet.threejsObj.rotation.x += 0.004; // Rotate towards cam
+  planet.threejsObj.rotation.z += 0.004;    // Rotate counter clockwise
 }
 
 // Sets the ligts for the scene - Needs a lot of work..
@@ -106,8 +114,10 @@ function setLight(){
   console.log('Add Light');
   var light = new THREE.AmbientLight( colors.lights.ambient ); // soft white light
   scene.add( light );
-  var sunlight = new THREE.PointLight( colors.lights.sun, 1, 10000 ); // Sun light.
-  sunlight.position.set( 0, 100, -10 );
+
+  var sunlight = new THREE.PointLight( colors.lights.sun, 1, 0 ); // Sun light.
+  sunlight.position.set( sun.position.x, sun.position.y, sun.position.z );
+  sun.threejsLight = sunlight;
   scene.add( sunlight );
 }
 // Returns an array of vertices for a three object that has geometry
