@@ -3,12 +3,14 @@
 var keyhandler = {
     keymap: {
       'Escape':     eventhandler.loop.toggle,
-      'ArrowUp':    eventhandler.movePlanet.up,
-      'ArrowRight': eventhandler.movePlanet.right,
-      'ArrowDown':  eventhandler.movePlanet.down,
-      'ArrowLeft':  eventhandler.movePlanet.left,
-      'PageUp':     eventhandler.movePlanet.away,
-      'PageDown':   eventhandler.movePlanet.closer,
+      'ArrowUp':    eventhandler.planet.move.up,
+      'ArrowRight': eventhandler.planet.move.right,
+      'ArrowDown':  eventhandler.planet.move.down,
+      'ArrowLeft':  eventhandler.planet.move.left,
+      'PageUp':     eventhandler.planet.move.away,
+      'PageDown':   eventhandler.planet.move.closer,
+      '.':          eventhandler.planet.mess.more,
+      ',':          eventhandler.planet.mess.less,
     },
     // On the keydown event - Trigger a key event if it is mapped to something in this.keymap
     keyevent: function(key){
