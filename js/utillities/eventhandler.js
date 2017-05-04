@@ -24,4 +24,12 @@ var eventhandler = {
       planet.threejsObj.position.z += 0.5;
     },
   },
+  'loop': {
+    toggle: function(){
+      if(!isPlaying){
+        window.requestAnimationFrame(nextframe);
+      }
+      isPlaying = !isPlaying;
+    },
+  },
 };

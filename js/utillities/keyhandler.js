@@ -2,7 +2,7 @@
 // Key handler handles keyboard inputs and can map these to the eventhandler or WAHTEVER
 var keyhandler = {
     keymap: {
-      's':          eventhandler.sayhi, // Say "Hi" when the 's' key is pressed
+      'Escape':     eventhandler.loop.toggle,
       'ArrowUp':    eventhandler.movePlanet.up,
       'ArrowRight': eventhandler.movePlanet.right,
       'ArrowDown':  eventhandler.movePlanet.down,

@@ -3,6 +3,7 @@ console.log('Main.js firing'); // Woo!
 
 var now, dt,
     last = timestamp(); // Vars for timemanagement
+var isPlaying = true;   // Whether loop is going or not
 var scene;              // The Three.js Scene
 var camera;             // The Three.js Camera
 var renderer;           // The Three.js Renderer
@@ -62,8 +63,9 @@ function nextframe(time){
   update(dt);
   render(dt);
   last = now;
-
-  window.requestAnimationFrame(nextframe);
+  if(isPlaying){
+    window.requestAnimationFrame(nextframe);
+  }
 }
 
 // The loope MAIN update function
