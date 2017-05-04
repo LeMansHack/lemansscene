@@ -9,6 +9,12 @@ var camera;             // The Three.js Camera
 var renderer;           // The Three.js Renderer
 var spawner;            // The scene spawner. It spawns stuff
 
+var log = {
+  'some': true,
+  'most': false,
+  'all':  false,
+};
+
 var skybox = {
   'radius': 70,
 };
@@ -46,7 +52,7 @@ function visualsIni(){
   scene.add( planet.init() );
 
   spawner = new Spawner();
-
+  dbugger.init();
   window.requestAnimationFrame(nextframe);
 }
 
@@ -84,7 +90,7 @@ function render(dt) {
 // Creates the planet object
 function setSkybox(){
   var geometry = new THREE.SphereGeometry( skybox.radius, 32, 32 );
-  var material = new THREE.MeshPhongMaterial( { color: colors.materials.sky, specular: colors.speculars.sky, shininess: 20, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading, side: THREE.BackSide } );
+  var material = new THREE.MeshPhongMaterial( { color: colors.materials.sky, specular: colors.speculars.sky, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading, side: THREE.BackSide } );
   skyboxObj = new THREE.Mesh( geometry, material );
   skyboxObj.position.set(0,0,0);
   return skyboxObj;

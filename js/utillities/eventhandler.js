@@ -19,7 +19,6 @@ var eventhandler = {
       },
     },
 
-
     // Move it around! Yay
     'move': {
       up: function(){
@@ -39,6 +38,22 @@ var eventhandler = {
       },
       closer: function(){
         planet.threejsObj.position.z += 0.5;
+      },
+    },
+  },
+
+
+  // CAMERA !!
+  'camera': {
+    'rotate': {
+      x: function(val){
+        camera.rotation.x = val;
+      },
+      y: function(val){
+        camera.rotation.y = val;
+      },
+      z: function(val){
+        camera.rotation.z = val;
       },
     },
   },

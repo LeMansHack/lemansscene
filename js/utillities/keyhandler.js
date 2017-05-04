@@ -3,12 +3,12 @@
 var keyhandler = {
     keymap: {
       'Escape':     eventhandler.loop.toggle,
-      'ArrowUp':    eventhandler.planet.move.up,
-      'ArrowRight': eventhandler.planet.move.right,
-      'ArrowDown':  eventhandler.planet.move.down,
-      'ArrowLeft':  eventhandler.planet.move.left,
-      'PageUp':     eventhandler.planet.move.away,
-      'PageDown':   eventhandler.planet.move.closer,
+      // 'ArrowUp':    eventhandler.planet.move.up,
+      // 'ArrowRight': eventhandler.planet.move.right,
+      // 'ArrowDown':  eventhandler.planet.move.down,
+      // 'ArrowLeft':  eventhandler.planet.move.left,
+      // 'PageUp':     eventhandler.planet.move.away,
+      // 'PageDown':   eventhandler.planet.move.closer,
       '.':          eventhandler.planet.mess.more,
       ',':          eventhandler.planet.mess.less,
       's':          eventhandler.spawner.spawn.tree,
@@ -19,7 +19,9 @@ var keyhandler = {
       if(this.keymap[key]){
         this.keymap[key]();   // Fire the keymaps function
       }else{
-        console.log('Pressed "'+key+'" but nothing is mapped to it.');
+        if(log.most){
+          console.log('Pressed "'+key+'" but nothing is mapped to it.');
+        }
       }
     },
 };
