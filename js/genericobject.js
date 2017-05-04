@@ -16,6 +16,9 @@ function GenericObject(){
     y: 0,
     z: 0.004,
   };
+  this.spawn = function(){
+
+  };
   this.update = function(dt){
     if(this.threejsObj){
       this.threejsObj.rotation.x += this.rotationspeed.x;

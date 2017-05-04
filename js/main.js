@@ -8,11 +8,6 @@ var camera;             // The Three.js Camera
 var renderer;           // The Three.js Renderer
 var spawner;            // The scene spawner. It spawns stuff
 
-// The Planet - Gets a three.js object on init
-var planet = {
-  'threejsObj' : {},
-  'radius' : 5.5,
-};
 var skybox = {
   'radius': 70,
 };
@@ -47,9 +42,7 @@ function visualsIni(){
   skybox.threejsObj = setSkybox();
   scene.add( skybox.threejsObj );
 
-  planet.threejsObj = newplanetObj();
-  scene.add( planet.threejsObj );
-  messUpObjVertices(planet.threejsObj);
+  scene.add( planet.init() );
 
   spawner = new Spawner();
 
@@ -78,8 +71,12 @@ function update(dt){
   document.getElementById('dt').innerHTML = '<span>'+dt+'</span>';
   var fps = dtToFps(dt);
   document.getElementById('fps').innerHTML = '<span>'+fps+'</span>';
-  updatePlanet(dt); // Updates the planet (eg.rotation)
-  spawner.update(dt);
+  if(planet){
+    planet.update(dt); // Updates the planet (eg.rotation)
+  }
+  if(spawner){
+    spawner.update(dt);
+  }
 }
 
 // The loops MAIN render function. All other render functions should be run here.
@@ -87,26 +84,12 @@ function render(dt) {
 	renderer.render( scene, camera );
 }
 // Creates the planet object
-function newplanetObj(){
-  var geometry = new THREE.SphereGeometry( planet.radius, 32, 32 );
-  var material = new THREE.MeshPhongMaterial( { color: colors.materials.grass, specular: colors.speculars.grass, shininess: 5, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
-  console.log(colors);
-  planetObj = new THREE.Mesh( geometry, material );
-  planetObj.position.set(0,0,0);
-  planetObj.rotation.z += 1;
-  return planetObj;
-}
 function setSkybox(){
   var geometry = new THREE.SphereGeometry( skybox.radius, 32, 32 );
   var material = new THREE.MeshPhongMaterial( { color: colors.materials.sky, specular: colors.speculars.sky, shininess: 20, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading, side: THREE.BackSide } );
   skyboxObj = new THREE.Mesh( geometry, material );
   skyboxObj.position.set(0,0,0);
   return skyboxObj;
-}
-// Update function for the planet
-function updatePlanet(dt){
-  // planet.threejsObj.rotation.x += 0.004; // Rotate towards cam
-  planet.threejsObj.rotation.z += 0.004;    // Rotate counter clockwise
 }
 
 // Sets the ligts for the scene - Needs a lot of work..
@@ -119,35 +102,6 @@ function setLight(){
   sunlight.position.set( sun.position.x, sun.position.y, sun.position.z );
   sun.threejsLight = sunlight;
   scene.add( sunlight );
-}
-// Returns an array of vertices for a three object that has geometry
-function getObjVertices(obj){
-  var vertices = [];
-  for (var i = 0; i < obj.geometry.vertices.length; i++)
-  {
-      var v = obj.geometry.vertices[i];
-      vertices.push(v);
-  }
-  return vertices;
-}
-// Takes a three object and loops through all its vertices and scales them each on random by a little bit
-function messUpObjVertices(obj){
-  for (var i = 0; i < obj.geometry.vertices.length; i++)
-  {
-      var v = obj.geometry.vertices[i];     // The current vertice
-      var scalemodifier = 0.1;              // Determines how much to scalevectors. must be ]0-1[
-      var scale = (Math.random()*scalemodifier)+(1-scalemodifier); // Generates the scale. Will be ]0-2[
-      v = scaleVector3(v, scale);           // Scales the vector
-      obj.geometry.vertices[i] = v;
-  }
-}
-// Up- or down scales a vector three and returns it
-function scaleVector3(v, scale){
-  // console.log('About to scale vector by scale: '+scale);
-  v.x = v.x*scale;
-  v.y = v.y*scale;
-  v.z = v.z*scale;
-  return v;
 }
 // Function to get the current framerate based on the deltatime
 function dtToFps(dt){
