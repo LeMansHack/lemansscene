@@ -8,6 +8,12 @@ This project is a WebGL based Three.js scene that renders an animated landscape.
 The generation of said landscape will be done using realtime data from LeMans. :O
 
 ## Keyboard Events
+
+To help during development, for testing and for fun, there is a keyhandler for handling keyboard presses.
+Some of these are for tweaking values.
+Some are for helping you out. (Such as the Esc -> Toggle Play/Pause)
+Others are simply for fun : )
+
 Key | Event
 --- | ---
 **Permanent Shortcuts**
@@ -21,3 +27,5 @@ Arrow Right | Moves planet upwards
 Arrow Left | Moves planet upwards
 Page Up | Moves planet away
 Page Down | Moves planet closer
+
+Please note that these are all subject to change.
