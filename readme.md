@@ -16,16 +16,8 @@ Others are simply for fun : )
 
 Key | Event
 --- | ---
-**Permanent Shortcuts**
 Esc | Toggles Play/Pause
-**Temporary Shortcuts**
-, | Decreases planet "Mess"
-. | Increases planet "Mess"
-Arrow Up | Moves planet upwards
-Arrow Down | Moves planet upwards
-Arrow Right | Moves planet upwards
-Arrow Left | Moves planet upwards
-Page Up | Moves planet away
-Page Down | Moves planet closer
+Space | Toggles Debugger
+
 
 Please note that these are all subject to change.

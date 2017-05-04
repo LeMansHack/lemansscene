@@ -4,6 +4,8 @@ var eventhandler = {
   sayhi: function(){
     console.log('Hi!');
   },
+
+
   // Events fot the planet obj
   'planet': {
     'mess': {
@@ -16,6 +18,8 @@ var eventhandler = {
         planet.messup();
       },
     },
+
+
     // Move it around! Yay
     'move': {
       up: function(){
@@ -38,6 +42,8 @@ var eventhandler = {
       },
     },
   },
+
+
   // Events for the "Game" loop itself
   'loop': {
     // Toggles the loop on/off
@@ -46,6 +52,24 @@ var eventhandler = {
         window.requestAnimationFrame(nextframe);
       }
       isPlaying = !isPlaying;
+    },
+  },
+
+
+  // Spawner
+  'spawner':{
+    'spawn': {
+      tree: function(){
+        spawner.spawnTree();
+      },
+    },
+  },
+
+
+  // Debugger
+  'dbugger': {
+    toggle: function(){
+      dbugger.toggle();
     },
   },
 };

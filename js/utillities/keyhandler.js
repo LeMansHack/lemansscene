@@ -11,6 +11,8 @@ var keyhandler = {
       'PageDown':   eventhandler.planet.move.closer,
       '.':          eventhandler.planet.mess.more,
       ',':          eventhandler.planet.mess.less,
+      's':          eventhandler.spawner.spawn.tree,
+      ' ':          eventhandler.dbugger.toggle,
     },
     // On the keydown event - Trigger a key event if it is mapped to something in this.keymap
     keyevent: function(key){

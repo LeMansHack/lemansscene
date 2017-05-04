@@ -57,7 +57,6 @@ function timestamp() {
 
 // The LOOP
 function nextframe(time){
-  document.getElementById('timestamp').innerHTML = '<span>'+time+'</span>';
   now   = timestamp();
   dt = Math.min(1, (now - last) / 1000);   // duration capped at 1.0 seconds
   update(dt);
@@ -70,9 +69,6 @@ function nextframe(time){
 
 // The loope MAIN update function
 function update(dt){
-  document.getElementById('dt').innerHTML = '<span>'+dt+'</span>';
-  var fps = dtToFps(dt);
-  document.getElementById('fps').innerHTML = '<span>'+fps+'</span>';
   if(planet){
     planet.update(dt); // Updates the planet (eg.rotation)
   }
