@@ -7,6 +7,7 @@ body {
 }
 canvas { width: 100%; height: 100% }
 p{margin: 0;}
+
 #dbugger{
   display: none;
   position: absolute;
@@ -20,19 +21,24 @@ p{margin: 0;}
   overflow: auto;
 }
 #dbugger[data-state=open]{display: block;}
-label{
-  display: block;
-  margin: 14px 0px 6px;
-}
+
 #dbugger section{
   padding: 12px 0px 22px;
   border-top: 1px solid #DDD;
 }
-
-#dbugger input[type=range]{width: 220px;}
 #dbugger section[data-state=open] > *{display: block;}
 #dbugger section[data-state=closed] > *{display: none;}
+
+#dbugger section[data-state] > .sectionheader::before{display: inline-block;margin-right: 4px;}
+#dbugger section[data-state=open] > .sectionheader::before{content: "-"; }
+#dbugger section[data-state=closed] > .sectionheader::before{content: "+";}
 #dbugger section[data-state=open] > .sectionheader,
 #dbugger section[data-state=closed] > .sectionheader{display: block;}
 #dbugger .sectionheader{cursor: pointer;}
 #dbugger .sectionheader:hover{text-decoration: underline;}
+
+label{
+  display: block;
+  margin: 14px 0px 6px;
+}
+#dbugger input[type=range]{width: 320px;}
