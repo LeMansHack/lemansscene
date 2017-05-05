@@ -28,3 +28,11 @@ label{
   padding: 12px 0px 22px;
   border-top: 1px solid #DDD;
 }
+
+#dbugger input[type=range]{width: 220px;}
+#dbugger section[data-state=open] > *{display: block;}
+#dbugger section[data-state=closed] > *{display: none;}
+#dbugger section[data-state=open] > .sectionheader,
+#dbugger section[data-state=closed] > .sectionheader{display: block;}
+#dbugger .sectionheader{cursor: pointer;}
+#dbugger .sectionheader:hover{text-decoration: underline;}

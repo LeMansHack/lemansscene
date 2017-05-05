@@ -56,6 +56,17 @@ var eventhandler = {
         camera.rotation.z = val;
       },
     },
+    'move': {
+      x: function(val){
+        camera.position.x = val;
+      },
+      y: function(val){
+        camera.position.y = val;
+      },
+      z: function(val){
+        camera.position.z = val;
+      },
+    },
   },
 
 

@@ -6,31 +6,63 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+
+
+
+
+
+		<!-- DBugger -->
 		<div id="dbugger" data-state="closed">
-			<h2>Debugger Tool</h2>
+			<h2>Dbugger Tool</h2>
 			<section>
 				<label for="isPlaying">isPlaying</label>
 				<button id="isPlaying" value="1">Toggle Play/Pause</button><br>
 			</section>
-			<section>
-				<h3>Camera</h3>
-				<label for="camera_rotation_x">Camera Rotation X</label>
-				<input type="range" id="camera_rotation_x" name="camera_rotation_x" min="0" max="4" step="0.1" value="0"/>
+			<section data-state="closed">
+				<h3 class="sectionheader">Camera</h3>
 
-				<label for="camera_rotation_y">Camera Rotation Y</label>
-				<input type="range" id="camera_rotation_y" name="camera_rotation_y" min="0" max="4" step="0.1" value="0"/>
+				<section data-state="closed">
+					<h4 class="sectionheader">Rotation</h4>
 
-				<label for="camera_rotation_z">Camera Rotation Z</label>
-				<input type="range" id="camera_rotation_z" name="camera_rotation_z" min="0" max="4" step="0.1" value="0"/>
+					<label for="camera_rotation_x">Camera Rotation X</label>
+					<input type="range" id="camera_rotation_x" name="camera_rotation_x" min="0" max="4" step="0.1" value="0"/><span id="camera_rotation_x_val"></span>
+
+					<label for="camera_rotation_y">Camera Rotation Y</label>
+					<input type="range" id="camera_rotation_y" name="camera_rotation_y" min="0" max="4" step="0.1" value="0"/><span id="camera_rotation_y_val"></span>
+
+					<label for="camera_rotation_z">Camera Rotation Z</label>
+					<input type="range" id="camera_rotation_z" name="camera_rotation_z" min="0" max="4" step="0.1" value="0"/><span id="camera_rotation_z_val"></span>
+				</section>
+
+				<section data-state="closed">
+					<h4 class="sectionheader">Position</h4>
+
+					<label for="camera_position_x">Camera Position X</label>
+					<input type="range" id="camera_position_x" name="camera_position_x" min="-10" max="10" step="0.1" value="0"/><span id="camera_position_x_val"></span>
+
+					<label for="camera_position_y">Camera Position Y</label>
+					<input type="range" id="camera_position_y" name="camera_position_y" min="-10" max="10" step="0.1" value="0"/><span id="camera_position_y_val"></span>
+
+					<label for="camera_position_z">Camera Position Z</label>
+					<input type="range" id="camera_position_z" name="camera_position_z" min="-10" max="10" step="0.1" value="0"/><span id="camera_position_z_val"></span>
+				</section>
+
 			</section>
 		</div>
+
+
+
+
+
+
 
 		<!-- Load Three Js Lib -->
 		<script src="js/three.js"></script>
 		<!-- Load Colorscheme -->
 		<script src="js/colorschemes/pastel.js"></script>
-		<!-- Load Planet Object -->
+		<!-- Load Main Objects -->
 		<script src="js/planet.js"></script>
+		<script src="js/skybox.js"></script>
 
 		<!-- Load Utillities -->
 		<script src="js/utillities/spawner.js"></script>

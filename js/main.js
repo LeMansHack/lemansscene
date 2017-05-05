@@ -11,13 +11,10 @@ var spawner;            // The scene spawner. It spawns stuff
 
 var log = {
   'some': true,
-  'most': false,
+  'most': true,
   'all':  false,
 };
 
-var skybox = {
-  'radius': 70,
-};
 var sun = {
   'position': {
     'x': -40,
@@ -46,9 +43,7 @@ function visualsIni(){
 
   setLight();
 
-  skybox.threejsObj = setSkybox();
-  scene.add( skybox.threejsObj );
-
+  scene.add( skybox.init() );
   scene.add( planet.init() );
 
   spawner = new Spawner();
@@ -78,6 +73,9 @@ function update(dt){
   if(planet){
     planet.update(dt); // Updates the planet (eg.rotation)
   }
+  if(skybox){
+    skybox.update(dt); // Updates the planet (eg.rotation)
+  }
   if(spawner){
     spawner.update(dt);
   }
@@ -86,14 +84,6 @@ function update(dt){
 // The loops MAIN render function. All other render functions should be run here.
 function render(dt) {
 	renderer.render( scene, camera );
-}
-// Creates the planet object
-function setSkybox(){
-  var geometry = new THREE.SphereGeometry( skybox.radius, 32, 32 );
-  var material = new THREE.MeshPhongMaterial( { color: colors.materials.sky, specular: colors.speculars.sky, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading, side: THREE.BackSide } );
-  skyboxObj = new THREE.Mesh( geometry, material );
-  skyboxObj.position.set(0,0,0);
-  return skyboxObj;
 }
 
 // Sets the ligts for the scene - Needs a lot of work..
