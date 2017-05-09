@@ -18,6 +18,9 @@ var eventhandler = {
         planet.messup();
       },
     },
+    pulse: function(){
+      helper.pulseVertices(planet.threejsObj);
+    },
 
     // Move it around! Yay
     'move': {

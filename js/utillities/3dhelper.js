@@ -35,5 +35,28 @@ var helper = {
     v.y = v.y*scale;
     v.z = v.z*scale;
     return v;
-  }
+  },
+
+  pulseVertices: function(obj){
+    var vertices = helper.getObjVertices(obj);
+    obj.updateGeometry = true;
+    vertices.map(function(v){helper.pulseVector3(v, (1+(Math.random()/10)));});
+  },
+  pulseVector3: function(v, scale){
+    var tweenpoints = {
+      froms: {
+        x: v.x,
+        y: v.y,
+        z: v.z,
+      },
+      tos: {
+        x: v.x * scale,
+        y: v.y * scale,
+        z: v.z * scale,
+      },
+    };
+    createjs.Tween.get(v)
+    .to({x:tweenpoints.tos.x, y:tweenpoints.tos.y, z:tweenpoints.tos.z}, 100, createjs.Ease.linear)
+    .to({x:tweenpoints.froms.x, y:tweenpoints.froms.y, z:tweenpoints.froms.z}, 200, createjs.Ease.linear);
+  },
 };

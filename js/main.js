@@ -33,13 +33,12 @@ function visualsIni(){
   console.log('sceneIni() : DOM Loaded');
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  camera.position.y = 5;
-  camera.position.z = 5;
+  camera.position.y = 7;
+  camera.position.z = 5.8;
   renderer = new THREE.WebGLRenderer();
 
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
-  camera.position.z = 5;
 
   setLight();
 
