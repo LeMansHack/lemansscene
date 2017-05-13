@@ -5,9 +5,9 @@ var planet = {
   'radius' : 5.5,     // Planet Radius. Duh..
   'initials': {
     'rotation': {
-      'x': 1,           // Initial Rotation Values
+      'x': 0,           // Initial Rotation Values
       'y': 0,           // These will set the rotation of the threeJs object.
-      'z': 0,           // Use this.threejsObj.rotation.z for getting and setting
+      'z': 1,           // Use this.threejsObj.rotation.z for getting and setting
     },
     'position': {
       'x': 0,           // Initial Position Values
@@ -15,9 +15,10 @@ var planet = {
       'z': 0,           // Use this.threejsObj.position.z for getting and setting
     },
   },
-  'rotation': {
-    'speed': 0.004,   // Rotation Speed
-    'axis': 'y',      // Axis to rotate around
+  'rotationspeed': {
+    'x': 0.004,
+    'y': 0,
+    'z': 0,
   },
   'mess': {
     'amount': 0.02,   // How much the vertices should differ
@@ -41,7 +42,9 @@ var planet = {
     if(this.threejsObj.updateGeometry){
       this.threejsObj.geometry.verticesNeedUpdate = true;
     }
-    this.threejsObj.rotation[this.rotation.axis] += this.rotation.speed;
+    this.threejsObj.rotation.x += this.rotationspeed.x;
+    this.threejsObj.rotation.y += this.rotationspeed.y;
+    this.threejsObj.rotation.z += this.rotationspeed.z;
   },
   messup: function(){
     helper.messUpObjVertices(this.threejsObj, this.mess.amount);

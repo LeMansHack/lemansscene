@@ -56,7 +56,30 @@ var helper = {
       },
     };
     createjs.Tween.get(v)
-    .to({x:tweenpoints.tos.x, y:tweenpoints.tos.y, z:tweenpoints.tos.z}, 100, createjs.Ease.linear)
-    .to({x:tweenpoints.froms.x, y:tweenpoints.froms.y, z:tweenpoints.froms.z}, 200, createjs.Ease.linear);
+    .to({x:tweenpoints.tos.x, y:tweenpoints.tos.y, z:tweenpoints.tos.z}, 60, createjs.Ease.powIn)
+    .to({x:tweenpoints.froms.x, y:tweenpoints.froms.y, z:tweenpoints.froms.z}, 220, createjs.Ease.powIn);
+  },
+  normalizeVector3: function(v){
+    var vlength = Math.sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+    var newv = {
+      x: v.x/vlength,
+      y: v.y/vlength,
+      z: v.z/vlength,
+    };
+    return newv;
+  },
+  rotationToPosition: function(r){
+    r = (r===0)?4:r;
+    var pos = 0;
+    if(r <= 1){
+      pos = 1 - r;
+    }else if (r > 1 && r <= 2) {
+      pos = (r - 1) * -1;
+    }else if (r > 2 && r <= 3) {
+      pos = (1 - (r - 2)) * -1;
+    }else{
+      pos = r - 3;
+    }
+    return pos;
   },
 };
