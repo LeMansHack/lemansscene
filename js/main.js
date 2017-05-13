@@ -48,6 +48,10 @@ function visualsIni(){
   spawner = new Spawner();
   dbugger.init();
   window.requestAnimationFrame(nextframe);
+
+  for (var i = 0; i < 40; i++) {
+    spawner.spawnTree( { rotation: { x:helper.randBetween(360), z:helper.randBetween(360), y:helper.randBetween(360) } } );
+  }
 }
 
 // Returns current time

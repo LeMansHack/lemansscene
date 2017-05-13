@@ -16,17 +16,7 @@ var Spawner = function(){
     }
   };
 
-  this.spawnTree = function(){
-    var spawnpos = this.getNewSpawnPosition();
-    this.objects.push(new Tree(spawnpos));
-  };
-
-  // Spawnposition!
-  this.getNewSpawnPosition = function(){
-    spawnpos = {};
-    spawnpos.x = planet.threejsObj.rotation.x % 4;
-    spawnpos.y = planet.threejsObj.rotation.y % 4;
-    spawnpos.z = planet.threejsObj.rotation.z % 4;
-    return spawnpos;
+  this.spawnTree = function(args){
+    this.objects.push(new Tree(args));
   };
 };

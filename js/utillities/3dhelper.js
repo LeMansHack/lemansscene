@@ -82,4 +82,16 @@ var helper = {
     }
     return pos;
   },
+  degToRad: function(d){
+    r = d * (Math.PI/180);
+    return r;
+  },
+  radToDeg: function(r){
+    d = r * (180/Math.PI);
+    return d;
+  },
+  randBetween: function(max,min){
+    min = (typeof min !== "undefined")?min:0;
+    return Math.floor(Math.random() * (max - min)) + min;
+  },
 };

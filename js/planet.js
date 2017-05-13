@@ -3,6 +3,10 @@
 var planet = {
   'threejsObj' : {},  // Will contain the Three Js Object after init()
   'radius' : 5.5,     // Planet Radius. Duh..
+  'pulse': {
+    'default': 1,
+    'timer': 0,
+  },
   'initials': {
     'rotation': {
       'x': 0,           // Initial Rotation Values
@@ -45,6 +49,11 @@ var planet = {
     this.threejsObj.rotation.x += this.rotationspeed.x;
     this.threejsObj.rotation.y += this.rotationspeed.y;
     this.threejsObj.rotation.z += this.rotationspeed.z;
+    if(this.pulse.timer <= 0){
+      eventhandler.planet.pulse();
+      this.pulse.timer = this.pulse.default;
+    }
+    this.pulse.timer -= dt;
   },
   messup: function(){
     helper.messUpObjVertices(this.threejsObj, this.mess.amount);
