@@ -18,6 +18,8 @@ Key | Event
 --- | ---
 Esc | Toggles Play/Pause
 Space | Toggles Debugger
+--- | ---
+S | Spawn in an object
 
 
 Please note that these are all subject to change.
