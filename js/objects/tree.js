@@ -16,7 +16,7 @@ function Tree(args){
         0xffff00,
         0x00ffff,
         0xff00ff,
-        0xffffff,
+        0x123456,
         0x000000,
       ],
     },
@@ -45,11 +45,13 @@ function Tree(args){
     var material = new THREE.MeshPhongMaterial( { color: this.colors.log.color, specular: this.colors.log.specular, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
     var log = new THREE.Mesh( geometry, material );
     log.geometry.translate(0,planet.radius,0);
+    log.castShadow = true;
 
     var lgeometry = new THREE.BoxGeometry( 1, 1, 1 );
     var lmaterial = new THREE.MeshPhongMaterial( { color: this.colors.leaves.color, specular: this.colors.leaves.color, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
     var leaves = new THREE.Mesh( lgeometry, lmaterial );
     leaves.geometry.translate(0,planet.radius+1,0);
+    leaves.castShadow = true;
 
     log.add(leaves);
     this.threejsObj = log;

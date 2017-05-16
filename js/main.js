@@ -38,6 +38,8 @@ function visualsIni(){
   renderer = new THREE.WebGLRenderer();
 
   renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.BasicShadowMap; // default THREE.PCFShadowMap
   document.body.appendChild( renderer.domElement );
 
   setLight();
@@ -49,8 +51,13 @@ function visualsIni(){
   dbugger.init();
   window.requestAnimationFrame(nextframe);
 
-  for (var i = 0; i < 40; i++) {
-    spawner.spawnTree( { rotation: { x:helper.randBetween(360), z:helper.randBetween(360), y:helper.randBetween(360) } } );
+  if(1 === 1){
+    for (var i = 0; i < 40; i++) {
+      spawner.spawnTree( { rotation: { x:helper.randBetween(360), z:helper.randBetween(360), y:helper.randBetween(360) } } );
+    }
+    for (var i = 0; i < 20; i++) {
+      spawner.spawnCloud(  );
+    }
   }
 }
 
@@ -96,6 +103,9 @@ function setLight(){
   scene.add( light );
 
   var sunlight = new THREE.PointLight( colors.lights.sun, 1, 0 ); // Sun light.
+  sunlight.castShadow = true;
+  sunlight.shadow.mapSize.width   = 512*2;  // default
+  sunlight.shadow.mapSize.height  = 512*2; // default
   sunlight.position.set( sun.position.x, sun.position.y, sun.position.z );
   sun.threejsLight = sunlight;
   scene.add( sunlight );

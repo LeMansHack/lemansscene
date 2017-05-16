@@ -19,4 +19,7 @@ var Spawner = function(){
   this.spawnTree = function(args){
     this.objects.push(new Tree(args));
   };
+  this.spawnCloud = function(args){
+    this.objects.push(new Cloud(args));
+  };
 };

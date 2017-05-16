@@ -31,6 +31,9 @@ var planet = {
     var geometry = new THREE.SphereGeometry( planet.radius, 44, 44 );
     var material = new THREE.MeshPhongMaterial( { color: colors.materials.grass, specular: colors.speculars.grass, shininess: 5, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
     this.threejsObj = new THREE.Mesh( geometry, material );
+
+    this.threejsObj.receiveShadow = true;
+
     this.threejsObj.position.set(this.initials.position.x, this.initials.position.y, this.initials.position.z);
     this.threejsObj.rotation.x = this.initials.rotation.x;
     this.threejsObj.rotation.y = this.initials.rotation.y;

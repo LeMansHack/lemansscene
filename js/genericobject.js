@@ -17,11 +17,11 @@ function GenericObject(args){
     rotation: {
       x: 0,
       y: 0,
-      z: -1,
+      z: 0,
     }
   };
   this.rotationspeed = {
-    x: -0.004,
+    x: 0,
     y: 0,
     z: 0,
   };
@@ -38,9 +38,6 @@ function GenericObject(args){
   this.update = function(dt){
     if(this.isAlive){
       this.age += dt;
-      if(this.threejsObj){
-
-      }
     }
   };
 }

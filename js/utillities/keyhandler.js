@@ -14,6 +14,7 @@ var keyhandler = {
       's':          eventhandler.spawner.spawn.tree,
       ' ':          eventhandler.dbugger.toggle,
       'p':          eventhandler.planet.pulse,
+      'c':          eventhandler.spawner.spawn.cloud,
     },
     // On the keydown event - Trigger a key event if it is mapped to something in this.keymap
     keyevent: function(key){

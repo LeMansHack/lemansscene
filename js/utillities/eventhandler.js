@@ -91,6 +91,9 @@ var eventhandler = {
       tree: function(){
         spawner.spawnTree();
       },
+      cloud: function(){
+        spawner.spawnCloud();
+      },
     },
   },
 

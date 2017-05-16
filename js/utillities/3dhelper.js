@@ -90,8 +90,14 @@ var helper = {
     d = r * (180/Math.PI);
     return d;
   },
-  randBetween: function(max,min){
+  randBetween: function(max,min, floor){
     min = (typeof min !== "undefined")?min:0;
-    return Math.floor(Math.random() * (max - min)) + min;
+    floor = (typeof floor !== "undefined")?floor:true;
+
+    if(floor){
+      return Math.floor(Math.random() * (max - min)) + min;
+    }else{
+      return (Math.random() * (max - min)) + min;
+    }
   },
 };
