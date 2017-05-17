@@ -5,22 +5,6 @@ function Tree(args){
   var c = helper.randBetween(colors.objects.tree.leaves.colors.length, 1);
   colors.objects.tree.leaves.color = colors.objects.tree.leaves.colors[c-1];
 
-  if(typeof args !== 'undefined'){
-    if(typeof args.color !== 'undefined'){
-      colors.objects.tree.leaves.color = args.color;
-    }
-    if(typeof args.rotation !== 'undefined'){
-      if(typeof args.rotation.x !== 'undefined'){
-        this.initials.rotation.x = helper.degToRad(args.rotation.x);
-      }
-      if(typeof args.rotation.y !== 'undefined'){
-        this.initials.rotation.y = helper.degToRad(args.rotation.y);
-      }
-      if(typeof args.rotation.z !== 'undefined'){
-        this.initials.rotation.z = helper.degToRad(args.rotation.z);
-      }
-    }
-  }
   this.init = function(){
     var geometry = new THREE.BoxGeometry( 0.2, 2, 0.2 );
     var material = new THREE.MeshPhongMaterial( { color: colors.objects.tree.log.color, specular: colors.objects.tree.log.specular, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );

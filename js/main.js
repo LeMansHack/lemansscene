@@ -1,5 +1,4 @@
 // Primary Script for the LeMansHack Visuals Project
-console.log('Main.js firing'); // Woo!
 
 var now, dt,
     last = timestamp(); // Vars for timemanagement
@@ -22,8 +21,6 @@ var sun = {
     'z': -50,
   },
 };
-console.log(planet);
-
 
 // When stuff is ready - Start the Scene!
 document.addEventListener('DOMContentLoaded', visualsIni);
@@ -51,15 +48,18 @@ function visualsIni(){
   dbugger.init();
   window.requestAnimationFrame(nextframe);
 
-  if(true === true){
+  if(true === false){
     for (var i = 0; i < 40; i++) {
-      spawner.spawnTree( { rotation: { x:helper.randBetween(360), z:helper.randBetween(360), y:helper.randBetween(360) } } );
+      spawner.spawnTree(  );
     }
     for (var i = 0; i < 20; i++) {
       spawner.spawnCloud(  );
     }
     for (var i = 0; i < 20; i++) {
       spawner.spawnCloudHigh(  );
+    }
+    for (var i = 0; i < 20; i++) {
+      spawner.spawnStone(  );
     }
   }
 }
@@ -101,7 +101,6 @@ function render(dt) {
 
 // Sets the ligts for the scene - Needs a lot of work..
 function setLight(){
-  console.log('Add Light');
   var light = new THREE.AmbientLight( colors.lights.ambient ); // soft white light
   scene.add( light );
 

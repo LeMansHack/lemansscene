@@ -22,6 +22,7 @@ Space | Toggles Debugger
 1 | Spawn in a Tree
 2 | Spawn in a Cloud
 3 | Spawn in a Cloud up high
+4 | Spawn in a Stone
 
 
 Please note that these are all subject to change.
