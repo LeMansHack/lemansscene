@@ -18,8 +18,10 @@ Key | Event
 --- | ---
 Esc | Toggles Play/Pause
 Space | Toggles Debugger
---- | ---
-S | Spawn in an object
+--- | Spawning Stuff
+1 | Spawn in a Tree
+2 | Spawn in a Cloud
+3 | Spawn in a Cloud up high
 
 
 Please note that these are all subject to change.

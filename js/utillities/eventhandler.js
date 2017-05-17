@@ -94,6 +94,9 @@ var eventhandler = {
       cloud: function(){
         spawner.spawnCloud();
       },
+      cloudHigh: function(){
+        spawner.spawnCloudHigh();
+      },
     },
   },
 

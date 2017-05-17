@@ -15,9 +15,9 @@ function GenericObject(args){
       z: 0,
     },
     rotation: {
-      x: 0,
-      y: 0,
-      z: 0,
+      x: helper.randBetween(4,0,false),
+      y: helper.randBetween(4,0,false),
+      z: helper.randBetween(4,0,false),
     }
   };
   this.rotationspeed = {
@@ -27,6 +27,7 @@ function GenericObject(args){
   };
   this.construct = function(args){
     this.args = args;
+    for (var attrname in args) { this[attrname] = args[attrname]; }
     this.init();
     delete this.args;
   };

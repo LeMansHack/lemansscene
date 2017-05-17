@@ -34,7 +34,7 @@ function visualsIni(){
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.y = 7;
-  camera.position.z = 5.8;
+  camera.position.z = 4;
   renderer = new THREE.WebGLRenderer();
 
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -51,12 +51,15 @@ function visualsIni(){
   dbugger.init();
   window.requestAnimationFrame(nextframe);
 
-  if(1 === 1){
+  if(true === true){
     for (var i = 0; i < 40; i++) {
       spawner.spawnTree( { rotation: { x:helper.randBetween(360), z:helper.randBetween(360), y:helper.randBetween(360) } } );
     }
     for (var i = 0; i < 20; i++) {
       spawner.spawnCloud(  );
+    }
+    for (var i = 0; i < 20; i++) {
+      spawner.spawnCloudHigh(  );
     }
   }
 }

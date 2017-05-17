@@ -22,4 +22,7 @@ var Spawner = function(){
   this.spawnCloud = function(args){
     this.objects.push(new Cloud(args));
   };
+  this.spawnCloudHigh = function(args){
+    this.objects.push(new CloudHigh(args));
+  };
 };
