@@ -28,4 +28,8 @@ var Spawner = function(){
   this.spawnStone = function(args){
     this.objects.push(new Stone(args));
   };
+
+  this.spawnCar = function(args){
+    this.objects.push(new Car(args));
+  };
 };

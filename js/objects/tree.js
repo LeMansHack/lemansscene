@@ -22,9 +22,9 @@ function Tree(args){
     this.threejsObj = log;
     planet.threejsObj.add(this.threejsObj);
 
-    this.threejsObj.position.x = this.initials.position.x;
-    this.threejsObj.position.y = this.initials.position.y;
-    this.threejsObj.position.z = this.initials.position.z;
+    // this.threejsObj.position.x = this.initials.position.x;
+    // this.threejsObj.position.y = this.initials.position.y;
+    // this.threejsObj.position.z = this.initials.position.z;
     this.threejsObj.rotation.x = this.initials.rotation.x;
     this.threejsObj.rotation.y = this.initials.rotation.y;
     this.threejsObj.rotation.z = this.initials.rotation.z;

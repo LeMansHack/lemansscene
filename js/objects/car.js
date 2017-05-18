@@ -54,22 +54,22 @@ function Car(){
 
   this.geometrySettings = {
     body: {
-      w: 0.4,
-      h: 0.2,
-      l: 0.6,
+      w: 0.6,
+      h: 0.22,
+      l: 0.9,
     },
     roof: { // Roof sizes er relative to body sizes
       w: 1,
       h: 0.5,
       l: 0.5,
-      offsetL: 0.2,
+      offsetL: 0.1,
     },
     wheels:{ // Wheel sizes er relative to body sizes
-      w: 0.8,
+      w: 0.9,
       d: 0.5, // Wheel diamiter
       position: {
         front: 0.8,
-        back:  0.1,
+        back:  0.2,
       },
     },
   };
@@ -97,14 +97,11 @@ function Car(){
         },
       },
     };
-    console.log(carsizes);
     // Body
     var bodygeo = new THREE.BoxGeometry( carsizes.body.w, carsizes.body.h, carsizes.body.l );
     var bodymat = new THREE.MeshPhongMaterial( { color: this.color, specular: this.specular, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
     var body = new THREE.Mesh( bodygeo, bodymat );
-    body.geometry.translate(0,planet.radius + carsizes.wheels.d,0);
-    console.log('Placing body on:');
-    console.log(planet.radius + carsizes.wheels.d);
+    body.geometry.translate(0,planet.radius + carsizes.wheels.d/2 + carsizes.body.h/2,0);
     body.castShadow = true;
 
     // Roof
@@ -120,36 +117,35 @@ function Car(){
       planet.radius + carsizes.body.h + carsizes.wheels.d,  // Place roof on top of body on top of wheels on top of planet
       carsizes.roof.offsetL                                 // Offset roof backwards
     );
-    console.log('Placing roof on:');
-    console.log(planet.radius + carsizes.body.h + carsizes.wheels.d);
     roof.castShadow = true;
 
     // Wheels
-    var wheelgeo = new THREE.BoxGeometry(
+    var wheelgeoFront = new THREE.BoxGeometry(
+      carsizes.wheels.w,
+      carsizes.wheels.d,
+      carsizes.wheels.d
+    );
+    var wheelgeoBack = new THREE.BoxGeometry(
       carsizes.wheels.w,
       carsizes.wheels.d,
       carsizes.wheels.d
     );
     var wheelmat = new THREE.MeshPhongMaterial( { color: this.wheelColor, specular: this.specular, shininess: 2, morphTargets: true, vertexColors: THREE.FaceColors, shading: THREE.FlatShading } );
-    // Front wheels
-    var wheelFront = new THREE.Mesh( wheelgeo, wheelmat );
-    wheelFront.geometry.translate(
-      0,
-      planet.radius,
-      ( -carsizes.body.l / 2 ) + carsizes.wheels.position.front       // Position wheels from back of car
-    );
-    wheelFront.castShadow = true;
-    // Back wheels
-    var wheelBack = new THREE.Mesh( wheelgeo, wheelmat );
+
+    var wheelFront = new THREE.Mesh( wheelgeoFront, wheelmat );
+    var wheelBack = new THREE.Mesh( wheelgeoBack, wheelmat );
     wheelBack.geometry.translate(
       0,
       planet.radius,
-      0
-      // ( -carsizes.body.l / 2 ) + carsizes.wheels.position.back       // Position wheels from back of car
+      ( carsizes.body.l / 2) - carsizes.wheels.position.back       // Position wheels from back of car
     );
-    console.log('Placing wheels on:');
-    console.log(planet.radius);
+    wheelFront.geometry.translate(
+      0,
+      planet.radius,
+      ( carsizes.body.l / 2) - carsizes.wheels.position.front       // Position wheels from back of car
+    );
     wheelBack.castShadow = true;
+    wheelFront.castShadow = true;
 
     body.add(roof);
     body.add(wheelBack);
@@ -160,6 +156,9 @@ function Car(){
   this.init = function(){
     this.threejsObj = this.buildCar();
     scene.add(this.threejsObj);
+  };
+  this.update = function(){
+    this.threejsObj.rotation.x -= 0.01;
   };
   this.init();
 }

@@ -49,7 +49,7 @@ function visualsIni(){
   dbugger.init();
   window.requestAnimationFrame(nextframe);
 
-  if(true === false){
+  if(true === true){
     for (var i = 0; i < 40; i++) {
       spawner.spawnTree(  );
     }
@@ -62,6 +62,7 @@ function visualsIni(){
     for (var i = 0; i < 20; i++) {
       spawner.spawnStone(  );
     }
+    spawner.spawnCar(  );
   }
 }
 

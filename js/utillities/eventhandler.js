@@ -100,6 +100,9 @@ var eventhandler = {
       stone: function(){
         spawner.spawnStone();
       },
+      car: function(){
+        spawner.spawnCar();
+      },
     },
   },
 

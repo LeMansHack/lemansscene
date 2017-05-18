@@ -15,9 +15,9 @@ function GenericObject(args){
       z: 0,
     },
     rotation: {
-      x: helper.randBetween(4,0,false),
-      y: helper.randBetween(4,0,false),
-      z: helper.randBetween(4,0,false),
+      x: 0,
+      y: 0,
+      z: 0,
     }
   };
   this.rotationspeed = {
@@ -25,20 +25,52 @@ function GenericObject(args){
     y: 0,
     z: 0,
   };
+
   this.construct = function(args){
     this.args = args;
+    this.initials.rotation.x = this.getSpawnlocation();
+    this.initials.rotation.z = this.getSpawnlocation();
+    this.initials.rotation.y = helper.randBetween(4,0,false);
     for (var attrname in args) { this[attrname] = args[attrname]; }
     this.init();
     delete this.args;
   };
-  this.init = function(){console.log('Generic Init');}; // Should be overwritten in the objects class
+
+  this.init = function(){
+    console.log('Generic Init');
+
+  }; // Should be overwritten in the objects class
+
   this.afterinit = function(){
     this.isAlive = true;
     delete this.initials; // Remove initial values
   };
+
   this.update = function(dt){
     if(this.isAlive){
       this.age += dt;
     }
   };
+
+  this.getSpawnlocation = function(){
+    var r = helper.randBetween(360,0,false);
+
+    while(!this.isValidSpawn(r)){
+      r = helper.randBetween(360,0,false);
+    }
+    console.log('Found point!');
+    console.log(r);
+    return helper.degToRad(r);
+  };
+
+  this.isValidSpawn = function(r){
+    if(r > 80 && r < 100){
+      return false;
+    }
+    if(r > 260 && r < 280){
+      return false;
+    }
+    return true;
+  };
+
 }

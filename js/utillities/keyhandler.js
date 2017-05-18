@@ -17,6 +17,7 @@ var keyhandler = {
       '2':          eventhandler.spawner.spawn.cloud,
       '3':          eventhandler.spawner.spawn.cloudHigh,
       '4':          eventhandler.spawner.spawn.stone,
+      '5':          eventhandler.spawner.spawn.car,
     },
     // On the keydown event - Trigger a key event if it is mapped to something in this.keymap
     keyevent: function(key){
