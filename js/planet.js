@@ -11,7 +11,7 @@ var planet = {
     'rotation': {
       'x': 0,           // Initial Rotation Values
       'y': 0,           // These will set the rotation of the threeJs object.
-      'z': helper.degToRad(90),           // Use this.threejsObj.rotation.z for getting and setting
+      'z': helper.degToRad(90), // Use this.threejsObj.rotation.z for getting and setting
     },
     'position': {
       'x': 0,           // Initial Position Values

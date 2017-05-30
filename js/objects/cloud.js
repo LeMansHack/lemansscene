@@ -42,9 +42,9 @@ function Cloud(args){
     }
     planet.threejsObj.add(this.threejsObj);
 
-    this.threejsObj.rotation.x = helper.randBetween(360);
-    this.threejsObj.rotation.y = helper.randBetween(360);
-    this.threejsObj.rotation.z = helper.randBetween(360);
+    this.threejsObj.rotation.x = this.initials.rotation.x;
+    this.threejsObj.rotation.y = this.initials.rotation.y;
+    this.threejsObj.rotation.z = this.initials.rotation.z;
     this.afterinit();
   };
   this.makePart = function(){

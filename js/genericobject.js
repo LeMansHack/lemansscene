@@ -28,9 +28,9 @@ function GenericObject(args){
 
   this.construct = function(args){
     this.args = args;
+    this.initials.rotation.y = helper.degToRad( helper.randBetween( 360 ) );
     this.initials.rotation.x = this.getSpawnlocation();
-    this.initials.rotation.z = this.getSpawnlocation();
-    this.initials.rotation.y = helper.randBetween(4,0,false);
+
     for (var attrname in args) { this[attrname] = args[attrname]; }
     this.init();
     delete this.args;
@@ -43,6 +43,8 @@ function GenericObject(args){
 
   this.afterinit = function(){
     this.isAlive = true;
+
+
     delete this.initials; // Remove initial values
   };
 
@@ -64,10 +66,13 @@ function GenericObject(args){
   };
 
   this.isValidSpawn = function(r){
-    if(r > 80 && r < 100){
-      return false;
-    }
-    if(r > 260 && r < 280){
+    if(
+      ( r < 20 ) ||
+      ( r > 80  && r < 100 ) ||
+      ( r > 260 && r < 280 ) ||
+      ( r > 160 && r < 200 ) ||
+      ( r > 340 )
+    ){
       return false;
     }
     return true;
