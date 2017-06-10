@@ -60,8 +60,8 @@ function GenericObject(args){
     while(!this.isValidSpawn(r)){
       r = helper.randBetween(360,0,false);
     }
-    console.log('Found point!');
-    console.log(r);
+    // console.log('Found point!');
+    // console.log(r);
     return helper.degToRad(r);
   };
 

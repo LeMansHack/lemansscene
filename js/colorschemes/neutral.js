@@ -1,7 +1,29 @@
 var colors = {
   lights: {
-    sun: 0xeadf55,
-    ambient: 0xdddddd,
+    sun: {
+      0:  0x333333,
+      4:  0x666666,
+      8:  0x999999,
+      12: 0xcccccc,
+      18: 0x999999,
+      21: 0x666666,
+    },
+    moon: {
+      0:  0x999999,
+      4:  0x666666,
+      8:  0x000000,
+      12: 0x000000,
+      18: 0x000000,
+      21: 0x666666,
+    },
+    ambient: {
+      0:  0x3c4c66,
+      4:  0x545b66,
+      8:  0xeae9af,
+      12: 0xf7e499,
+      18: 0xeaceab,
+      21: 0x3c4c66,
+    },
   },
   materials: {
     ground: 0xfff0a5,

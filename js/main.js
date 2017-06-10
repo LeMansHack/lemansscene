@@ -9,18 +9,17 @@ var renderer;           // The Three.js Renderer
 var spawner;            // The scene spawner. It spawns stuff
 var cars = [];          // Array of cars
 
+var time = {
+  'd': new Date(),
+};
+time.h = time.d.getHours();
+time.m = time.d.getMinutes();
+time.s = time.d.getSeconds();
+
 var log = {
   'some': true,
   'most': true,
   'all':  false,
-};
-
-var sun = {
-  'position': {
-    'x': -40,
-    'y': 100,
-    'z': -50,
-  },
 };
 
 // When stuff is ready - Start the Scene!
@@ -40,9 +39,10 @@ function visualsIni(){
   renderer.shadowMap.type = THREE.BasicShadowMap; // default THREE.PCFShadowMap
   document.body.appendChild( renderer.domElement );
 
-  setLight();
-
   scene.add( skybox.init() );
+  scene.add( ambientlight.init() );
+  scene.add( sun.init() );
+  scene.add( moon.init() );
   scene.add( planet.init() );
 
   spawner = new Spawner();
@@ -85,15 +85,16 @@ function nextframe(time){
 
 // The loope MAIN update function
 function update(dt){
-  if(planet){
-    planet.update(dt); // Updates the planet (eg.rotation)
-  }
-  if(skybox){
-    skybox.update(dt); // Updates the planet (eg.rotation)
-  }
-  if(spawner){
-    spawner.update(dt);
-  }
+  // Updates the planet (eg.rotation)
+  if(planet){ planet.update(dt); }
+  // Updates the Skybox (eg.rotation)
+  if(skybox){ skybox.update(dt);  }
+  // Updates the Sun. (eg.rotation, color)
+  if(sun){ sun.update(dt); }
+  // Updates the Ambient Light. (eg. color)
+  if(ambientlight){ ambientlight.update(dt); }
+  // Update spawner object
+  if(spawner){ spawner.update(dt); }
 }
 
 // The loops MAIN render function. All other render functions should be run here.
@@ -101,19 +102,6 @@ function render(dt) {
 	renderer.render( scene, camera );
 }
 
-// Sets the ligts for the scene - Needs a lot of work..
-function setLight(){
-  var light = new THREE.AmbientLight( colors.lights.ambient ); // soft white light
-  scene.add( light );
-
-  var sunlight = new THREE.PointLight( colors.lights.sun, 1, 0 ); // Sun light.
-  sunlight.castShadow = true;
-  sunlight.shadow.mapSize.width   = 512*2;  // default
-  sunlight.shadow.mapSize.height  = 512*2; // default
-  sunlight.position.set( sun.position.x, sun.position.y, sun.position.z );
-  sun.threejsLight = sunlight;
-  scene.add( sunlight );
-}
 // Function to get the current framerate based on the deltatime
 function dtToFps(dt){
   var fps = Math.floor(1000/dt);
