@@ -9,13 +9,12 @@ var sync = {
   timesincelastupdate: 0,
   isPulling: false,
   displayNumberOfCars: 3,
-  init(){
+  init: function(){
     this.pullData();
   },
   update: function(dt){
     this.timesincelastupdate += dt;
     if(this.timesincelastupdate > this.updaterate){
-      console.log('Sync Update');
       // Reset timer
       this.timesincelastupdate = 0;
 
@@ -30,11 +29,11 @@ var sync = {
     }
   },
   pullData: function(callback){
+    console.log('Pulling data...');
     syncobj = this;
     syncobj.isPulling = true;
     axios.get(address)
       .then(function (response) {
-        console.log('Syncronising data!');
         response.data.cars = (response.data.cars.length > 0)?response.data.cars:livedata.cars;
         livedata = response.data;
         syncobj.isPulling = false;
@@ -57,5 +56,7 @@ var sync = {
     for (var i = 0; i < 3; i++) {
       spawner.cars[i].newRanking( livedata.cars[i].ranking );
     }
+
   },
 };
+sync.init();

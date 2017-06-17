@@ -127,22 +127,18 @@ var sun = {
 
 // moonlight
 var moon = {
-  vector2: {a:0,b:0},
-  distFromCenter: sun.distFromCenter,
   init: function(){
-    this.position = this.calcPosition( this.h );
-    moonlight = new THREE.PointLight( this.getColor( this.h ), 1, 0 ); // Sun light.
+    moonlight = new THREE.PointLight( this.getColor( time.h ), .4, 0 );
     moonlight.castShadow = true;
     moonlight.shadow.mapSize.width   = 512*2;  // default
     moonlight.shadow.mapSize.height  = 512*2; // default
-    moonlight.position.set( this.position.x, this.position.y, this.position.z );
+    moonlight.position.set( sun.position.x*-1, sun.position.y*-1, sun.position.z );
     moon.threejsLight = moonlight;
     return moon.threejsLight;
   },
   update: function(){
       this.setColor();
-      this.position = this.calcPosition( this.h );
-      this.threejsLight.position.set( this.position.x, this.position.y, this.position.z );
+      this.threejsLight.position.set( sun.position.x*-1, sun.position.y*-1, sun.position.z );
   },
   getColor: function( h ){
     var k = 0;
@@ -156,24 +152,5 @@ var moon = {
   setColor: function(){
     var c = this.getColor( this.h );
     this.threejsLight.color.setHex( c );
-  },
-  calcPosition: function( h ){
-    var pos = {x:0,y:0,z:sun.position.z}; // Object for containing the postion in 3d space
-    var rotation = sun.rotation + 180;  // Current time in degrees.
-    rotation += 90;                        // Add 90 deg to place midnight at 90 deg (down)
-    rotation = rotation % 360;             // Modular 360
-
-    // console.log('Its '+time.h+':'+time.m+' o\'clock so sun rotation is '+rotation);
-    rotation = helper.degToRad(rotation);  // Convert to radians
-
-    // Calculate normalized vector 2 from rotation
-    var ca = Math.cos(rotation);
-    var sa = Math.sin(rotation);
-    this.vector2.a = ca*1 - sa*0;
-    this.vector2.b = sa*1 + ca*0;
-    // Scale vector
-    pos.x = this.vector2.a * this.distFromCenter;
-    pos.y = this.vector2.b * this.distFromCenter;
-    return pos;
   },
 };

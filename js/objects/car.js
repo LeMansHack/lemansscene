@@ -5,7 +5,7 @@ function Car(args){
   this.threejsObj = false;
   this.color      = carcolors[this.number];
   this.wheelColor = 0x333344;
-  this.specular   = 0x000000;
+  this.specular   = 0xdddddd;
 
   this.geometrySettings = {
     body: {
