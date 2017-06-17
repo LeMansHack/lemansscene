@@ -69,7 +69,7 @@ var webaudio_tooling_obj = function () {
         var array_freq_domain = new Uint8Array(buffer_length);
         var array_time_domain = new Uint8Array(buffer_length);
 
-        console.log("buffer_length " + buffer_length);
+        // console.log("buffer_length " + buffer_length);
 
         script_processor_analysis_node.onaudioprocess = function() {
 

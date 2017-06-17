@@ -20,10 +20,12 @@ function Cloud(args){
       max: 0.5,
     }
   };
+
   this.rotationspeed = {
-    x: Math.random()/10,
-    y: Math.random()/10,
-    z: Math.random()/10,
+    scale: .1,
+    x: Math.random(),
+    y: Math.random(),
+    z: Math.random(),
   };
   this.init = function(){
 
@@ -61,9 +63,10 @@ function Cloud(args){
     return part;
   };
   this.update = function(dt){
-    this.threejsObj.rotation.x += this.rotationspeed.x*dt;
-    this.threejsObj.rotation.y += this.rotationspeed.y*dt;
-    this.threejsObj.rotation.z += this.rotationspeed.z*dt;
+    if(typeof livedata !== 'undefined' && typeof livedata.wind !== 'undefined'){
+      this.threejsObj.rotation.x += this.rotationspeed.x * this.rotationspeed.scale * livedata.wind.direction.a * livedata.wind.speed * dt;
+      this.threejsObj.rotation.z += this.rotationspeed.z * this.rotationspeed.scale * livedata.wind.direction.b * livedata.wind.speed * dt;
+    }
   };
   this.construct(args);
 }

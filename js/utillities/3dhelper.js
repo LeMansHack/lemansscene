@@ -29,7 +29,7 @@ var helper = {
     obj.geometry.verticesNeedUpdate = true;
   },
   messUpObjVerticesFreq: function(obj, scalemodifier, freqoffset, freqoffsetMax){
-    console.log(audioFreq);
+    // console.log(audioFreq);
     if(!obj.geometry.originalvertices){
       obj.geometry.originalvertices = JSON.parse(JSON.stringify(obj.geometry.vertices)); // Get a copy of the original vertices to work from
     }
@@ -39,8 +39,10 @@ var helper = {
         var scale = 0;
 
         if(typeof audioFreq !== 'undefined'){
-          var index = Math.floor( ( i + freqoffset % freqoffsetMax ) % audioFreq.length );
-          scale = (audioFreq[index]/256 * scalemodifier) +1;
+          if(typeof obj.geometry.vertices[i].freqIndex === 'undefined'){
+            obj.geometry.vertices[i].freqIndex = Math.floor( helper.randBetween(freqoffset,freqoffsetMax) );
+          }
+          scale = (audioFreq[obj.geometry.vertices[i].freqIndex]/256 * scalemodifier) +1;
         }else{
           // scale = (Math.random()*scalemodifier)+(1-scalemodifier); // Generates the scale. Will be ]0-2[
             scale = 1;

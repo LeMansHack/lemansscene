@@ -25,7 +25,7 @@ var planet = {
     'z': 0,
   },
   'mess': {
-    'amount': .2,   // How much the vertices should differ
+    'amount': .1,   // How much the vertices should differ
   },
   init: function(){
     var geometry = new THREE.SphereGeometry( planet.radius, 44, 44 );

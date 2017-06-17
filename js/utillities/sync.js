@@ -2,6 +2,13 @@
 var address = 'http://192.168.1.34:3000';
 var livedata = {
   cars: [],
+  wind: {
+    speed: 1,
+    direction: {
+      a: 1,
+      b:1,
+    },
+  },
 };
 
 var sync = {
@@ -46,6 +53,7 @@ var sync = {
   },
   updatedData: function(){
     this.updateCars();
+    this.updateWind();
   },
   updateCars: function(){
     if( spawner.cars.length < 1 ){
@@ -58,5 +66,17 @@ var sync = {
     }
 
   },
+  updateWind: function(){
+    this.wind.speed = livedata.wheather.query.results.channel.wind.speed;
+    direction = livedata.wheather.query.results.channel.wind.direction;
+    direction = helper.degToRad(direction);  // Convert to radians
+
+    // Calculate normalized vector 2 from rotation
+    var ca = Math.cos( direction );
+    var sa = Math.sin( direction );
+    this.wind.direction.a = this.vector2.a = ca*1 - sa*0;
+    this.wind.direction.b = this.vector2.b = sa*1 + ca*0;
+
+  }
 };
 sync.init();
