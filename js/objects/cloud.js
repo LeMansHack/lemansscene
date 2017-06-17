@@ -22,7 +22,7 @@ function Cloud(args){
   };
 
   this.rotationspeed = {
-    scale: .1,
+    scale: .01,
     x: Math.random(),
     y: Math.random(),
     z: Math.random(),
@@ -65,7 +65,7 @@ function Cloud(args){
   this.update = function(dt){
     if(typeof livedata !== 'undefined' && typeof livedata.wind !== 'undefined'){
       this.threejsObj.rotation.x += this.rotationspeed.x * this.rotationspeed.scale * livedata.wind.direction.a * livedata.wind.speed * dt;
-      this.threejsObj.rotation.z += this.rotationspeed.z * this.rotationspeed.scale * livedata.wind.direction.b * livedata.wind.speed * dt;
+      this.threejsObj.rotation.z += this.rotationspeed.z * this.rotationspeed.scale * livedata.wind.speed * dt;
     }
   };
   this.construct(args);
