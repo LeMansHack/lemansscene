@@ -73,6 +73,12 @@ var eventhandler = {
   },
 
 
+  'time': {
+    h: function(h){
+      time.h = h;
+    }
+  },
+
   // Events for the "Game" loop itself
   'loop': {
     // Toggles the loop on/off

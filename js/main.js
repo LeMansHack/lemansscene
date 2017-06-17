@@ -101,6 +101,8 @@ function update(dt){
   if(ambientlight){ ambientlight.update(dt); }
   // Update spawner object
   if(spawner){ spawner.update(dt); }
+
+  if(sync){ sync.update(dt); }
 }
 
 // The loops MAIN render function. All other render functions should be run here.
