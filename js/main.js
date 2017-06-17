@@ -55,16 +55,16 @@ function visualsIni(){
   window.requestAnimationFrame(nextframe);
 
   if(true === true){
-    for (var i = 0; i < 40; i++) {
+    for (var i = 0; i < 60; i++) {
       spawner.spawnTree(  );
     }
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 16; i++) {
       spawner.spawnCloud(  );
     }
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 30; i++) {
       spawner.spawnCloudHigh(  );
     }
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 15; i++) {
       spawner.spawnStone(  );
     }
   }

@@ -49,11 +49,11 @@ var sync = {
   },
   updateCars: function(){
     if( spawner.cars.length < 1 ){
-      spawner.spawnCar( {number: livedata.cars[0].number, ranking: livedata.cars[0].ranking} );
-      spawner.spawnCar( {number: livedata.cars[1].number, ranking: livedata.cars[1].ranking} );
-      spawner.spawnCar( {number: livedata.cars[2].number, ranking: livedata.cars[2].ranking} );
+      for (var i = 0; i < 6; i++) {
+        spawner.spawnCar( {number: livedata.cars[i].number, ranking: livedata.cars[i].ranking} );
+      }
     }
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 6; i++) {
       spawner.cars[i].newRanking( livedata.cars[i].ranking );
     }
 

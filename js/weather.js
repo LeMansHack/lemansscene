@@ -26,9 +26,13 @@ var skybox = {
 
 var ambientlight = {
   h: 0,
+  isColorTransitioning: false,
+  color: {},
   init: function(){
     this.h = time.h;
-    this.threejsLight = new THREE.AmbientLight( this.getColor( this.h ) ); // soft white light
+    this.color = this.getColor( this.h );
+    this.threejsLight = new THREE.AmbientLight(); // soft white light
+    this.threejsLight.color.setRGB(this.color.r,this.color.g,this.color.b);
     return this.threejsLight;
   },
   update: function(){
@@ -36,6 +40,9 @@ var ambientlight = {
       console.log('Time changed');
       this.h = time.h;
       this.setColor();
+    }
+    if(this.isColorTransitioning){
+      this.threejsLight.color.setRGB( this.color.r, this.color.g, this.color.b );
     }
   },
   getColor: function( h ){
@@ -49,8 +56,16 @@ var ambientlight = {
   },
   setColor: function(){
     var c = this.getColor( this.h );
-    this.threejsLight.color.setHex( c );
+    this.isColorTransitioning = true;
+    // this.threejsLight.color.setHex( c );
+    var thiscar = this;
+    createjs.Tween.get( this.color )
+    .to({ r: c.r, g: c.g, b: c.b }, 2000, createjs.Ease.powIn)
+    .call(thiscar.doneColor);
   },
+  doneColor: function(){
+    this.isColorTransitioning = false;
+  }
 };
 
 
@@ -128,7 +143,7 @@ var sun = {
 // moonlight
 var moon = {
   init: function(){
-    moonlight = new THREE.PointLight( this.getColor( time.h ), .4, 0 );
+    moonlight = new THREE.PointLight( this.getColor( time.h ), .24, 0 );
     moonlight.castShadow = true;
     moonlight.shadow.mapSize.width   = 512*2;  // default
     moonlight.shadow.mapSize.height  = 512*2; // default

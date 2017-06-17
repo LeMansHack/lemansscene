@@ -20,6 +20,11 @@ function Cloud(args){
       max: 0.5,
     }
   };
+  this.rotationspeed = {
+    x: Math.random()/10,
+    y: Math.random()/10,
+    z: Math.random()/10,
+  };
   this.init = function(){
 
     for (var i = 0; i < this.parts.amount; i++) {
@@ -54,6 +59,11 @@ function Cloud(args){
     var part = new THREE.Mesh( geometry, material );
 
     return part;
+  };
+  this.update = function(dt){
+    this.threejsObj.rotation.x += this.rotationspeed.x*dt;
+    this.threejsObj.rotation.y += this.rotationspeed.y*dt;
+    this.threejsObj.rotation.z += this.rotationspeed.z*dt;
   };
   this.construct(args);
 }
