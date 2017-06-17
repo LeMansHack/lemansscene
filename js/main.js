@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', visualsIni);
 // Main INIT function. Set up stuff and starts the loop
 function visualsIni(){
   console.log('sceneIni() : DOM Loaded');
-  scene = new THREE.Scene();
+  scene  = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.y = 7;
   camera.position.z = 4;
@@ -39,11 +39,17 @@ function visualsIni(){
   renderer.shadowMap.type = THREE.BasicShadowMap; // default THREE.PCFShadowMap
   document.body.appendChild( renderer.domElement );
 
-  scene.add( skybox.init() );
-  scene.add( ambientlight.init() );
-  scene.add( sun.init() );
-  scene.add( moon.init() );
-  scene.add( planet.init() );
+  var objs = [];
+  objs.push( sun.init() );
+  objs.push( ambientlight.init() );
+  objs.push( skybox.init() );
+  objs.push( moon.init() );
+  objs.push( planet.init() );
+  var objslength = objs.length;
+  for (var i = 0; i < objslength; i++) {
+    // console.log('Scene Add: '+objs[i]);
+    scene.add(objs[i]);
+  }
 
   spawner = new Spawner();
   dbugger.init();

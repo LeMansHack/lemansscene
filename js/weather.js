@@ -59,7 +59,8 @@ var sun = {
   position: {
     x: 0,
     y: 0,
-    z: -50,
+    // z: -50,
+    z: -20,
   },
   distFromCenter: planet.radius * 19.58, // 107.703
   vector2: {
@@ -77,6 +78,7 @@ var sun = {
     sunlight.shadow.mapSize.height  = 512*2; // default
     sunlight.position.set( this.position.x, this.position.y, this.position.z );
     sun.threejsLight = sunlight;
+
     return sun.threejsLight;
   },
   update: function(){
@@ -109,7 +111,6 @@ var sun = {
     rotation += 90;                        // Add 90 deg to place midnight at 90 deg (down)
     rotation = rotation % 360;             // Modular 360
 
-    // console.log('Its '+time.h+':'+time.m+' o\'clock so sun rotation is '+rotation);
     rotation = helper.degToRad(rotation);  // Convert to radians
 
     // Calculate normalized vector 2 from rotation
@@ -119,7 +120,7 @@ var sun = {
     this.vector2.b = sa*1 + ca*0;
     // Scale vector
     pos.x = this.vector2.a * this.distFromCenter;
-    pos.y = this.vector2.b * this.distFromCenter;
+    pos.y = this.vector2.b * this.distFromCenter *-1;
     return pos;
   },
 };
