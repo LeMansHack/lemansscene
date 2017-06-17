@@ -1,0 +1,8 @@
+var carcolors = {
+  7: 0xdb7093,
+  8: 0x6495ed,
+  1: 0x7fff00,
+  2: 0xf5f5dc,
+  9: 0xb22222,
+  4: 0x228b22,
+};

@@ -2,6 +2,7 @@
 var Spawner = function(){
   var that = this;
   this.objects = [];
+  this.cars    = [];
 
   this.update = function(dt){
     if(Math.random() < 0.002){
@@ -12,6 +13,14 @@ var Spawner = function(){
     if(objectslength > 0){
       for (var i = objectslength-1; i >= 0; i--) {
         this.objects[i].update(dt);
+      }
+    }
+
+    // Updates all the spawned in cars
+    var carslength = this.cars.length;
+    if(carslength > 0){
+      for (var i = carslength-1; i >= 0; i--) {
+        this.cars[i].update(dt);
       }
     }
   };
@@ -30,6 +39,6 @@ var Spawner = function(){
   };
 
   this.spawnCar = function(args){
-    this.objects.push(new Car(args));
+    this.cars.push(new Car(args));
   };
 };

@@ -7,7 +7,6 @@ var scene;              // The Three.js Scene
 var camera;             // The Three.js Camera
 var renderer;           // The Three.js Renderer
 var spawner;            // The scene spawner. It spawns stuff
-var cars = [];          // Array of cars
 
 var time = {
   'd': new Date(),
@@ -68,7 +67,6 @@ function visualsIni(){
     for (var i = 0; i < 20; i++) {
       spawner.spawnStone(  );
     }
-    spawner.spawnCar(  );
   }
 }
 

@@ -1,54 +1,9 @@
 // A Car!!!!!
-function Car(){
-  this.data = {
-    pilot: {
-      "lastName": "",
-      "firstName": "DAVIDSON A.",
-      "country": "",
-      "birthday": "",
-      "picture": "",
-      "site": "",
-      "facebook": "",
-      "twitter": ""
-    },
-    driverStatus:           "Run",
-    laps:                   27,
-    time:                   "1493977541503",
-    timeDifference:         "",
-    bestTimeInMiliseconds:  115233,
-    lastTimeInMiliseconds:  121987,
-    pits:                   3,
-    averageSpeed:           218.8,
-    tires:                  "M",
-    wec:                    false,
-    d1l1:                   null,
-    d1l2:                   null,
-    d2l1:                   null,
-    d2l2:                   null,
-    avg:                    null,
-    team:                   "Toyota Gazoo Racing",
-    number:                 8,
-    category:               "LMP1",
-    carBrand:               "",
-    carName:                "Toyota TS050 - Hybrid",
-    position:               {
-      "percent": 1,
-      "sector": 1,
-      "timestamp": "1493977793000"
-    },
-    ranking:           1,
-    categoryPosition:  1,
-    sector:            1,
-    currentSector1:    "33.663",
-    currentSector2:    "57.933",
-    currentSector3:    "30.391",
-    bestSector1:       "33.088",
-    bestSector2:       "52.525",
-    bestSector3:       "29.576",
-  };
-
+function Car(args){
+  this.number = args.number;
+  this.ranking = args.ranking;
   this.threejsObj = false;
-  this.color      = 0xff00ff;
+  this.color      = carcolors[this.number];
   this.wheelColor = 0x333344;
   this.specular   = 0x000000;
 
@@ -156,9 +111,33 @@ function Car(){
   this.init = function(){
     this.threejsObj = this.buildCar();
     scene.add(this.threejsObj);
+    this.driveIn( this.ranking );
   };
   this.update = function(){
-    this.threejsObj.rotation.x -= 0.01;
+
+  };
+  this.driveIn = function(){
+    var carpos = this.threejsObj.rotation;
+    this.threejsObj.rotation.x = helper.degToRad( (this.ranking * 12)+50 );
+    var xtween = helper.degToRad( (this.ranking * 12)-12 );
+    createjs.Tween.get( carpos )
+    .to({x:xtween}, 400, createjs.Ease.powIn);
+  };
+  this.newRanking = function(newranking){
+    var carpos = this.threejsObj.rotation;
+    var xtween = helper.degToRad( (newranking * 12)-12 );
+    if(newranking == this.ranking){
+
+    }else if(newranking > this.ranking){
+      createjs.Tween.get( carpos )
+      .to({x:xtween}, 400, createjs.Ease.powIn);
+    }else{
+      var ztween = helper.degToRad( 8 );
+      createjs.Tween.get( carpos )
+      .to({z:ztween}, 200, createjs.Ease.powIn)
+      .to({x:xtween}, 400, createjs.Ease.powIn)
+      .to({z:0}, 200, createjs.Ease.powIn);
+    }
   };
   this.init();
 }
