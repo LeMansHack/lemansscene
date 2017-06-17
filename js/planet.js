@@ -25,7 +25,7 @@ var planet = {
     'z': 0,
   },
   'mess': {
-    'amount': 0.02,   // How much the vertices should differ
+    'amount': .2,   // How much the vertices should differ
   },
   init: function(){
     var geometry = new THREE.SphereGeometry( planet.radius, 44, 44 );
@@ -52,13 +52,17 @@ var planet = {
     this.threejsObj.rotation.x += this.rotationspeed.x;
     this.threejsObj.rotation.y += this.rotationspeed.y;
     this.threejsObj.rotation.z += this.rotationspeed.z;
-    if(this.pulse.timer <= 0){
-      eventhandler.planet.pulse();
-      this.pulse.timer = this.pulse.default;
-    }
-    this.pulse.timer -= dt;
+    // if(this.pulse.timer <= 0){
+    //   eventhandler.planet.pulse();
+    //   this.pulse.timer = this.pulse.default;
+    // }
+    // this.pulse.timer -= dt;
+    this.messFreq();
   },
   messup: function(){
     helper.messUpObjVertices(this.threejsObj, this.mess.amount);
+  },
+  messFreq: function(){
+    helper.messUpObjVerticesFreq(this.threejsObj, this.mess.amount, 0, 400);
   },
 };
