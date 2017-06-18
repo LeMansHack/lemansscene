@@ -104,11 +104,16 @@ var sync = {
         status: livedata.cars[i].driverStatus,
         classpos: livedata.cars[i].categoryPosition,
       };
-      var html = '<div class="scorecard" data-category="'+c.category+'">';
+      var st = {
+        2: 'RUN',
+        3: 'OUT',
+        4: 'IN',
+      };
+      var html = '<div class="scorecard" data-category="'+c.category+'" data-status="'+st[c.status]+'">';
       html += '<span class="label ranking">'+c.ranking+'</span>';
       html += '<span class="label driver">'+c.driver+'</span>';
       html += '<span class="label number">'+c.number+'</span>';
-      html += '<span class="label status">'+c.status+'</span>';
+      html += '<span class="label status">'+st[c.status]+'</span>';
       html += '<span class="label classpos">'+c.classpos+'</span>';
       html += '</div>';
       scoreHTML += html;

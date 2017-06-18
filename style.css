@@ -120,6 +120,20 @@ label{
   color: #FFF;
   text-transform: uppercase;
 }
+#scoreouter .scorecard .status::before{
+  content: '';
+  display: inline-block;
+  border-radius: 8vw;
+  height: 1vw;
+  width: 1vw;
+  margin-right: .5vw;
+  border: .2vw solid #FFF;
+  vertical-align: text-top;
+}
+#scoreouter .scorecard[data-status="RUN"] .status::before{background-color: green;}
+#scoreouter .scorecard[data-status="OUT"] .status::before{background-color: orange;}
+#scoreouter .scorecard[data-status="IN"] .status::before{background-color: red;}
+
 #scoreouter .labels{
   font-size: 1vw;
   line-height: 2vw;
