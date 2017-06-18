@@ -93,6 +93,27 @@ var sync = {
       6: 'yellow',
     };
     eventhandler.ui.updateFlag( flags[livedata.track.flag] );
+    var scoreHTML = '';
+    carslength = spawner.cars.length;
+    for (var i = 0; i < carslength; i++) {
+      var c = {
+        category: livedata.cars[i].category,
+        ranking: livedata.cars[i].ranking,
+        driver: livedata.cars[i].pilot.firstName+' '+livedata.cars[i].pilot.lastName,
+        number: livedata.cars[i].number,
+        status: livedata.cars[i].driverStatus,
+        classpos: livedata.cars[i].categoryPosition,
+      };
+      var html = '<div class="scorecard" data-category="'+c.category+'">';
+      html += '<span class="label ranking">'+c.ranking+'</span>';
+      html += '<span class="label driver">'+c.driver+'</span>';
+      html += '<span class="label number">'+c.number+'</span>';
+      html += '<span class="label status">'+c.status+'</span>';
+      html += '<span class="label classpos">'+c.classpos+'</span>';
+      html += '</div>';
+      scoreHTML += html;
+    }
+    eventhandler.ui.updateScore( scoreHTML );
   },
 };
 sync.init();

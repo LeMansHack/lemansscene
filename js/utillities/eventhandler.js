@@ -86,6 +86,9 @@ var eventhandler = {
     updateFlag: function(flag){
       ui.updateFlag(flag);
     },
+    updateScore: function( score ){
+      ui.updateScore( score );
+    },
   },
 
   // Events for the "Game" loop itself

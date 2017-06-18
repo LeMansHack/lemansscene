@@ -5,4 +5,7 @@ var ui = {
   updateFlag: function( flag ){
     document.getElementById('ui_flag').setAttribute('data-color', flag);
   },
+  updateScore: function( score ){
+    document.getElementById('score').innerHTML = score;
+  },
 };
