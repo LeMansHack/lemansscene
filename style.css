@@ -45,14 +45,14 @@ label{
 .countdown{
   position: absolute;
   z-index: 99;
-  top: 44px;
-  left: 44px;
+  top: 4vw;
+  left: 4vw;
   color: #FFF;
-  font-size: 2em;
-  padding: 4px 12px;
-  border-top-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  border: 2px solid #999;
+  font-size: 4.5vw;
+  padding: 1.2vw 3vw;
+  border-top-left-radius: 4vw;
+  border-bottom-right-radius: 4vw;
+  border: .3vw solid #999;
 
   background: #2a6b96;
   background: -moz-linear-gradient(top, #2a6b96 0%, #2c539e 100%);
