@@ -76,7 +76,13 @@ var eventhandler = {
   'time': {
     h: function(h){
       time.h = h;
-    }
+    },
+  },
+
+  'ui': {
+    updateTimer: function(time){
+      ui.updateTimer(time);
+    },
   },
 
   // Events for the "Game" loop itself

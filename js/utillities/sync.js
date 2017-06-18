@@ -12,7 +12,7 @@ var livedata = {
 };
 
 var sync = {
-  updaterate: 5, // In seconds
+  updaterate: 3, // In seconds
   timesincelastupdate: 0,
   isPulling: false,
   displayNumberOfCars: 3,
@@ -54,6 +54,7 @@ var sync = {
   updatedData: function(){
     this.updateCars();
     this.updateWind();
+    this.updateTimer();
   },
   updateCars: function(){
     if( spawner.cars.length < 1 ){
@@ -64,22 +65,26 @@ var sync = {
     for (var i = 0; i < 6; i++) {
       spawner.cars[i].newRanking( livedata.cars[i].ranking );
     }
-
   },
   updateWind: function(){
-    direction = livedata.wheather.query.results.channel.wind.direction;
+    direction = livedata.track.weather.windDirection;
     direction = helper.degToRad(direction);  // Convert to radians
 
     // Calculate normalized vector 2 from rotation
     var ca = Math.cos( direction );
     var sa = Math.sin( direction );
     livedata.wind = {
-      speed: livedata.wheather.query.results.channel.wind.speed,
+      speed: livedata.track.weather.windSpeed,
       direction: {
         a: ca*1 - sa*0,
         b: sa*1 + ca*0,
       },
     };
-  }
+  },
+  updateTimer: function(){
+    var rt = new Date(livedata.track.remainingTimeInSeconds * 1000).toISOString().substr(11, 8);
+    console.log(rt);
+    eventhandler.ui.updateTimer(rt);
+  },
 };
 sync.init();
