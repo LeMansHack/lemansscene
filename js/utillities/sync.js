@@ -101,6 +101,7 @@ var sync = {
         ranking: livedata.cars[i].ranking,
         driver: livedata.cars[i].pilot.firstName+' '+livedata.cars[i].pilot.lastName,
         number: livedata.cars[i].number,
+        laps: livedata.cars[i].laps,
         status: livedata.cars[i].driverStatus,
         classpos: livedata.cars[i].categoryPosition,
       };
@@ -113,6 +114,7 @@ var sync = {
       html += '<span class="label ranking">'+c.ranking+'</span>';
       html += '<span class="label driver">'+c.driver+'</span>';
       html += '<span class="label number">'+c.number+'</span>';
+      html += '<span class="label laps">'+c.laps+'</span>';
       html += '<span class="label status">'+st[c.status]+'</span>';
       html += '<span class="label classpos">'+c.classpos+'</span>';
       html += '</div>';
