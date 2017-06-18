@@ -90,8 +90,10 @@ label{
 .countdown .flag[data-color="red"]{
   background-color: #ee1d23;
 }
-.countdown .flag[data-color="sc"]{
-  background-color: #337ab7;
+.countdown .flag[data-color="checkered"]{
+  background-image: url(images/flag_checkered.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #scoreouter{
