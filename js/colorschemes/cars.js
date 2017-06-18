@@ -1,8 +1,6 @@
 var carcolors = {
-  7: 0xdb7093,
-  8: 0x6495ed,
-  1: 0x7fff00,
-  2: 0xf5f5dc,
-  9: 0xb22222,
-  4: 0x228b22,
+  'LMP1': 0xcc0c00,
+  'LMP2': 0x335687,
+  'LM GTE PRO': 0x009e49,
+  'LM GTE AM': 0xff6600,
 };

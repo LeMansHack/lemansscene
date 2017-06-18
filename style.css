@@ -48,15 +48,48 @@ label{
   top: 4vw;
   left: 4vw;
   color: #FFF;
-  font-size: 4.5vw;
-  padding: 1.2vw 3vw;
-  border-top-left-radius: 4vw;
-  border-bottom-right-radius: 4vw;
+  height: 6vw;
+  font-size: 4vw;
+  line-height: 6vw;
+  border-top-left-radius: 3.2vw;
+  border-bottom-right-radius: 3.2vw;
   border: .3vw solid #999;
+  overflow: hidden;
+}
+.countdown #ui_countdown,
+.countdown .flag{
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+.countdown #ui_countdown{
+  padding: 0 3vw;
+  border-bottom-right-radius: 4vw;
+  border-right: .3vw solid #999;
 
-  background: #2a6b96;
-  background: -moz-linear-gradient(top, #2a6b96 0%, #2c539e 100%);
-  background: -webkit-linear-gradient(top, #2a6b96 0%,#2c539e 100%);
-  background: linear-gradient(to bottom, #2a6b96 0%,#2c539e 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2a6b96', endColorstr='#2c539e',GradientType=0 );
+  background: #337ab7;
+  background: -moz-linear-gradient(top, #337ab7 0%, #2f61a8 100%);
+  background: -webkit-linear-gradient(top, #337ab7 0%,#2f61a8 100%);
+  background: linear-gradient(to bottom, #337ab7 0%,#2f61a8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#337ab7', endColorstr='#2f61a8',GradientType=0 );
+  z-index: 2;
+}
+.countdown .flag{
+  margin-left: -3.2vw;
+  width: 8vw;
+  z-index: 1;
+}
+.countdown .flag,
+.countdown .flag[data-color="green"]{
+  background-color: #8bc63e;
+}
+.countdown .flag[data-color="yellow"]{
+  background-color: #fac800;
+}
+.countdown .flag[data-color="red"]{
+  background-color: #ee1d23;
+}
+.countdown .flag[data-color="sc"]{
+  background-color: #337ab7;
 }

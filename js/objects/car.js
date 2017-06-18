@@ -1,9 +1,9 @@
 // A Car!!!!!
 function Car(args){
-  this.number = args.number;
+  this.category = args.category;
   this.ranking = args.ranking;
   this.threejsObj = false;
-  this.color      = carcolors[this.number];
+  this.color      = carcolors[this.category];
   this.wheelColor = 0x333344;
   this.specular   = 0xdddddd;
   this.audioFreqIndex = false;

@@ -54,12 +54,12 @@ var sync = {
   updatedData: function(){
     this.updateCars();
     this.updateWind();
-    this.updateTimer();
+    this.updateUI();
   },
   updateCars: function(){
     if( spawner.cars.length < 1 ){
       for (var i = 0; i < 6; i++) {
-        spawner.spawnCar( {number: livedata.cars[i].number, ranking: livedata.cars[i].ranking} );
+        spawner.spawnCar( {ranking: livedata.cars[i].ranking, category: livedata.cars[i].category} );
       }
     }
     for (var i = 0; i < 6; i++) {
@@ -81,10 +81,18 @@ var sync = {
       },
     };
   },
-  updateTimer: function(){
+  updateUI: function(){
     var rt = new Date(livedata.track.remainingTimeInSeconds * 1000).toISOString().substr(11, 8);
     console.log(rt);
     eventhandler.ui.updateTimer(rt);
+    var flags = {
+      2: 'green',
+      3: 'red',
+      4: 'checkered',
+      5: 'yellow',
+      6: 'yellow',
+    };
+    eventhandler.ui.updateFlag( flags[livedata.track.flag] );
   },
 };
 sync.init();

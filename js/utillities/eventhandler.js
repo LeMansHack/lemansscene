@@ -83,6 +83,9 @@ var eventhandler = {
     updateTimer: function(time){
       ui.updateTimer(time);
     },
+    updateFlag: function(flag){
+      ui.updateFlag(flag);
+    },
   },
 
   // Events for the "Game" loop itself
