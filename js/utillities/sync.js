@@ -97,6 +97,7 @@ var sync = {
     }else{
       eventhandler.ui.updateFlag( flags[livedata.track.flag] );
     }
+    eventhandler.ui.updateSC( livedata.track.safetyCar );
     var scoreHTML = '';
     carslength = spawner.cars.length;
     for (var i = 0; i < carslength; i++) {

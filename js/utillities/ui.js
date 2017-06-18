@@ -8,4 +8,7 @@ var ui = {
   updateScore: function( score ){
     document.getElementById('score').innerHTML = score;
   },
+  updateSC: function( sc ){
+    document.getElementById('ui_sc').setAttribute('data-isSC', sc);
+  },
 };

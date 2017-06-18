@@ -89,6 +89,9 @@ var eventhandler = {
     updateScore: function( score ){
       ui.updateScore( score );
     },
+    updateSC: function( sc ){
+      ui.updateSC( sc );
+    },
   },
 
   // Events for the "Game" loop itself
