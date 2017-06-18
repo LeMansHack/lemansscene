@@ -92,7 +92,11 @@ var sync = {
       5: 'yellow',
       6: 'yellow',
     };
-    eventhandler.ui.updateFlag( flags[livedata.track.flag] );
+    if(livedata.track.safetyCar === true){
+      eventhandler.ui.updateFlag( 'yellow' );
+    }else{
+      eventhandler.ui.updateFlag( flags[livedata.track.flag] );
+    }
     var scoreHTML = '';
     carslength = spawner.cars.length;
     for (var i = 0; i < carslength; i++) {
