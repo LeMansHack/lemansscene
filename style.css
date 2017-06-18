@@ -148,17 +148,18 @@ label{
 #scoreouter .scorecard[data-category="LM GTE AM"]{background-color: #ff6600;}
 
 #ui_sc{
+  display: none;
+  font-size: 1.4vw;
+  color: #FFF;
+  text-align: center;
   position: absolute;
   top: 12vw;
   left: 8vw;
   width: 18vw;
   height: 4px;
 }
-#ui_sc[data-isSC="true"] .sc{
+#ui_sc[data-isSC="true"]{
   display: block;
-  font-size: 1.4vw;
-  color: #FFF;
-  text-align: center;
 }
 #ui_sc .rotator{
   position: absolute;
