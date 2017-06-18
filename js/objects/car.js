@@ -6,6 +6,7 @@ function Car(args){
   this.color      = carcolors[this.number];
   this.wheelColor = 0x333344;
   this.specular   = 0xdddddd;
+  this.audioFreqIndex = false;
 
   this.geometrySettings = {
     body: {
@@ -114,7 +115,16 @@ function Car(args){
     this.driveIn( this.ranking );
   };
   this.update = function(){
-
+    if(typeof audioFreq !== 'undefined'){
+      if(this.audioFreqIndex === false){
+        this.audioFreqIndex = Math.floor( helper.randBetween( 400, audioFreq.length ) );
+      }
+      if(this.audioFreqIndex){
+        this.threejsObj.position.y = ( audioFreq[this.audioFreqIndex] / 500);
+        // this.threejsObj.rotation.y = ( ( audioFreq[this.audioFreqIndex] - 128) / 1000);
+        // this.threejsObj.rotation.z = ( ( audioFreq[this.audioFreqIndex] - 128) / 1000);
+      }
+    }
   };
   this.driveIn = function(){
     var carpos = this.threejsObj.rotation;
