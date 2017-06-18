@@ -102,11 +102,11 @@ label{
   width: 36vw;
 }
 #scoreouter .label{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: inline-block;}
-#scoreouter .ranking{width: 8%;}
+#scoreouter .ranking{width: 8%;text-align: center;}
 #scoreouter .driver{width: 55%;}
-#scoreouter .number{width: 8%;}
-#scoreouter .status{width: 14%;}
-#scoreouter .classpos{width: 15%;}
+#scoreouter .number{width: 8%;text-align: center;}
+#scoreouter .status{width: 14%;text-align: center;}
+#scoreouter .classpos{width: 15%;text-align: center;}
 #scoreouter .labels,
 #scoreouter .scorecard{
   width: 100%;

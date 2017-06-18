@@ -120,7 +120,7 @@ function Car(args){
         this.audioFreqIndex = Math.floor( helper.randBetween( 400, audioFreq.length ) );
       }
       if(this.audioFreqIndex){
-        this.threejsObj.position.y = ( audioFreq[this.audioFreqIndex] / 500);
+        this.threejsObj.position.y = ( audioFreq[this.audioFreqIndex] / 500) +.1;
         // this.threejsObj.rotation.y = ( ( audioFreq[this.audioFreqIndex] - 128) / 1000);
         // this.threejsObj.rotation.z = ( ( audioFreq[this.audioFreqIndex] - 128) / 1000);
       }
